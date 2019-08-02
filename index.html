@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <title>Ract app into iframe</title>
+</head>
+
+<body>
+    <header class="page-header cyan lighten-1">
+        <div class="container">
+            <div class="row ">
+                <div class="col s12">
+                    <h1 class="white-text flow-text">
+                        Header Content
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="row ">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <iframe height="500px" width="100%" src="http://localhost:3000?country=ES&car=lamborghini"
+                            rel="noopener noreferrer">
+                        </iframe>
+                        <h5>Default State country = EN</h5>
+                        <h5>Default State car = Ferrari</h5>
+                        <br />
+                        <code><i>
+                            &lt;iframe height="300px" width="100%" src="http://localhost:3000?<b>country=ES</b>&<b>car=lamborghini</b>" 
+                            &gt;&lt;/iframe&gt;
+                        </i></code>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="react-app-code">
+                            <code>
+                                const [country, setCountry] = useState("EN");
+                                const [car, setCar] = useState("Ferrari");
+                                <br/><br/>
+                                useEffect(() =&gt; { <br/>
+                                    &nbsp;&nbsp;<b>const urlParams = <br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new URLSearchParams(window.location.search);</b><br/>
+                                    &nbsp;&nbsp;if (<b>urlParams.has("country")</b>) {
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;setCountry(<b>urlParams.get("country")</b>);<br/>
+                                    &nbsp;&nbsp;}<br/>
+                                    &nbsp;&nbsp;if (<b>urlParams.has("car")</b>) {<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;setCar(<b>urlParams.get("car")</b>);<br/>
+                                        &nbsp;&nbsp;}}, []);<br/>
+                                return (<br/>
+                                    &nbsp;&nbsp;&lt;div className="App"&gt;<br/>
+                                    &nbsp;&nbsp;&lt;header className="App-header"&gt;<br/>
+                                    &nbsp;&nbsp;&lt;img src={logo} className="App-logo" alt="logo" /&gt;<br/>
+                                    &nbsp;&nbsp;&lt;h2&gt;Parameter Country: {country}&lt;/h2&gt;<br/>
+                                    &nbsp;&nbsp;&lt;h2&gt;Parameter Car: {car}&lt;/h2&gt;<br/>
+                                    &nbsp;&nbsp;&lt;/header&gt;<br/>
+                                    &nbsp;&nbsp;&lt;/div&gt;<br/>
+                                );
+                            </code>
+                        </div>
+                        <h5>Explanation:</h5>
+                        <ul>
+                            <li> * <b>window.location.search</b> =>  returns the query portion of a URL including the Question mark: <i>?country=ES&car=lamborghini.</li>       
+                            <li> * The <b>URLSearchParams</b> interface defines utility methods to work with the query string of a URL.</li>
+                            <li> * <b>urlParams.has('country')</b> verifies if the queryParam "country" exists.</li>
+                            <li> * <b>urlParams.get('country')</b> returns queryParam "country" value.</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer cyan lighten-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="white-text flow-text">
+                            Footer Content
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>
