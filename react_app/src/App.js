@@ -2,15 +2,25 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+	//Create States
 	const [country, setCountry] = useState("EN");
 	const [car, setCar] = useState("Ferrari");
 
+  //Load queryParams values in the states
 	useEffect(() => {
-		const urlParams = new URLSearchParams(window.location.search);
+
+    //Intance inteface with Query Params
+    const urlParams = new URLSearchParams(window.location.search);
+
+    //Verify if exist country queryParam
 		if (urlParams.has("country")) {
+      //Set country in the state
 			setCountry(urlParams.get("country"));
-		}
+    }
+    
+    //Verify if exist car queryParam
 		if (urlParams.has("car")) {
+      //Set country in the state
 			setCar(urlParams.get("car"));
     }
     
